@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a sample HTTP Service, written in Typelevel Scala, which contains an endpoint that adheres to the following requirements:
+This is a sample HTTP Service, written in [Typelevel Scala](https://typelevel.org/), which contains an endpoint that adheres to the following requirements:
 
 1. Accepts latitude and longitude coordinates.
 2. Returns the short forecast for that area for Today (“Partly Cloudy” etc).
@@ -13,7 +13,7 @@ This is a sample HTTP Service, written in Typelevel Scala, which contains an end
 
 Local / target machine should have the following software installed:
 
-* `jdk 1.8` or compatible JVM/JRE
+* `jdk 21` or later
 * `sbt 1.10.2`
 
 ## Build / Testing Instructions
