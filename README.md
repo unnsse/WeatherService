@@ -13,7 +13,7 @@ This is a sample HTTP Service, written in [Typelevel Scala](https://typelevel.or
 
 Local / target machine should have the following software installed:
 
-* `jdk 21` or later
+* `jdk 21` (should work on `jdk11` or later)
 * `sbt 1.10.2`
 
 ## Build / Testing Instructions
