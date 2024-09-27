@@ -21,11 +21,12 @@ object WeatherServer extends IOApp {
   implicit def logger: Logger[IO] = Slf4jLogger.getLogger[IO]
 
   // Define case classes for the API response structure
-  case class Properties(forecast: String)
-  case class PointsResponse(properties: Properties)
-  case class Period(shortForecast: String, temperature: Double)
-  case class ForecastProperties(periods: List[Period])
-  case class ForecastResponse(properties: ForecastProperties)
+  private case class Properties(forecast: String)
+  private case class PointsResponse(properties: Properties)
+  private case class Period(shortForecast: String, temperature: Double)
+  private case class ForecastProperties(periods: List[Period])
+  private case class ForecastResponse(properties: ForecastProperties)
+
   case class WeatherResponse(forecast: String, temperatureType: String)
 
   // Classify temperature into cold, moderate, or hot
@@ -71,8 +72,8 @@ object WeatherServer extends IOApp {
     } yield weatherResponse
   }
 
-  // Define the weather service route
- val weatherService = HttpRoutes.of[IO] {
+ // Define the weather service route
+ val weatherService: HttpRoutes[IO] = HttpRoutes.of[IO] {
     case GET -> Root / "weather" :? LatitudeQueryParamMatcher(maybeLat) +& LongitudeQueryParamMatcher(maybeLon) =>
       (maybeLat, maybeLon) match {
         case (Some(lat), Some(lon)) if isValidCoordinate(lat, lon) =>
@@ -87,13 +88,13 @@ object WeatherServer extends IOApp {
   }
 
   // Matcher for latitude query param
-  object LatitudeQueryParamMatcher extends OptionalQueryParamDecoderMatcher[Double]("latitude")
+  private object LatitudeQueryParamMatcher extends OptionalQueryParamDecoderMatcher[Double]("latitude")
   
   // Matcher for longitude query param
-  object LongitudeQueryParamMatcher extends OptionalQueryParamDecoderMatcher[Double]("longitude")
+  private object LongitudeQueryParamMatcher extends OptionalQueryParamDecoderMatcher[Double]("longitude")
 
   // Validate coordinate range
-  def isValidCoordinate(lat: Double, lon: Double): Boolean = {
+  private def isValidCoordinate(lat: Double, lon: Double): Boolean = {
     lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180
   }
 
