@@ -1,6 +1,12 @@
 lazy val http4sVersion = "0.23.28"
-lazy val circeVersion = "0.14.5"
-lazy val sttpVersion = "3.8.3"
+lazy val circeVersion = "0.14.9"
+lazy val sttpVersion = "3.9.7"
+lazy val ips4sCoreVersion = "3.6.0"
+lazy val log4CatsCoreVersion = "2.7.0"
+lazy val log4CatsSlf4jVersion = "2.7.0"
+lazy val logbackClassicVersion = "1.5.6"
+lazy val scalaTestVersion = "3.2.19"
+lazy val catsEffectTestingScalaTestVersion = "1.5.0"
 
 ThisBuild / scalaVersion := "2.13.14"
 
@@ -12,13 +18,13 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-parser" % circeVersion,
   "com.softwaremill.sttp.client3" %% "core" % sttpVersion,
   "com.softwaremill.sttp.client3" %% "circe" % sttpVersion,
-  "com.comcast" %% "ip4s-core" % "3.0.1",
-  "org.typelevel" %% "log4cats-slf4j" % "2.6.0",
-  "ch.qos.logback" % "logback-classic" % "1.4.7",
-  
+  "com.comcast" %% "ip4s-core" % ips4sCoreVersion,
+  "org.typelevel" %% "log4cats-core" % log4CatsCoreVersion,
+  "org.typelevel" %% "log4cats-slf4j" % log4CatsSlf4jVersion,
+  "ch.qos.logback" % "logback-classic" % logbackClassicVersion,
   // Test dependencies
-  "org.scalatest" %% "scalatest" % "3.2.15" % Test,
-  "org.typelevel" %% "cats-effect-testing-scalatest" % "1.5.0" % Test,
+  "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
+  "org.typelevel" %% "cats-effect-testing-scalatest" % catsEffectTestingScalaTestVersion % Test,
   "org.http4s" %% "http4s-client" % http4sVersion % Test
 )
 
